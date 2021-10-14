@@ -1,0 +1,43 @@
+.cardProduct {
+  border: 1px solid black;
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  object-fit: cover;
+  height: 6.25rem;
+  width: 100%;
+}
+
+.content {
+  margin: 20px;
+  flex: 1;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 20px;
+}
+
+.description {
+  overflow: hidden;
+  width: 150px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}

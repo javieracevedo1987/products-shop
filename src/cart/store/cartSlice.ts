@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { Product } from '../../infra/interfaces/Product'
 
 export interface CartState {
-  cart: Array<any>
+  cart: Product[]
 }
 
 const initialState: CartState = {

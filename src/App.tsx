@@ -1,12 +1,14 @@
 import { Products } from './products/containers/Products'
-import { Menu } from './shared/layout/menu/Menu'
-import './App.css'
+import { Cart } from './cart/containers/Cart'
+import styles from './App.module.css'
 
 function App() {
   return (
     <div className="App">
-      <Menu />
-      <Products />
+      <div className={styles.container}>
+        <Products />
+        <Cart />
+      </div>
     </div>
   )
 }
