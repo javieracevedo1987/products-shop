@@ -62,6 +62,7 @@ export const selectHasStock = (id: string) => (state: RootState) => {
   return !!product?.stock
 }
 
+// Thunk side effect actions
 export const getProducts = (): AppThunk => (dispatch, getState) => {
   const currentValue = selectProducts(getState())
   const hasProducts = currentValue.length

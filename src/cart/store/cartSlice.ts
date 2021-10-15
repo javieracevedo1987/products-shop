@@ -93,6 +93,4 @@ export const addAmountRemoveStock =
     dispatch(productRemoveStock(id))
   }
 
-// export const
-
 export default cartSlice.reducer
