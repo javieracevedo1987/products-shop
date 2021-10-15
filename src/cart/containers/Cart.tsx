@@ -7,7 +7,7 @@ export const Cart: React.FC = () => {
   const cart = useAppSelector(selectCart)
   return (
     <div className={styles.cart}>
-      <h1>Cart Container!</h1>
+      <h1>Cart</h1>
       {cart.map((item) => (
         <CartItem item={item} key={item.id} />
       ))}

@@ -23,7 +23,14 @@ export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    updateStock: (state, { payload }: PayloadAction<string>) => {
+    addStock: (state, { payload }: PayloadAction<string>) => {
+      const index = state.products.findIndex(
+        (product) => product.id === payload
+      )
+      state.products[index].stock += 1
+    },
+
+    removeStock: (state, { payload }: PayloadAction<string>) => {
       const index = state.products.findIndex(
         (product) => product.id === payload
       )
@@ -42,11 +49,18 @@ export const productsSlice = createSlice({
   },
 })
 
-export const { updateStock } = productsSlice.actions
+export const { addStock, removeStock } = productsSlice.actions
 
 // Getters State
 export const selectProducts = (state: RootState) =>
   state.productsModule.products
+
+export const selectHasStock = (id: string) => (state: RootState) => {
+  const product = state.productsModule.products.find(
+    (product) => product.id === id
+  )
+  return !!product?.stock
+}
 
 export const getProducts = (): AppThunk => (dispatch, getState) => {
   const currentValue = selectProducts(getState())

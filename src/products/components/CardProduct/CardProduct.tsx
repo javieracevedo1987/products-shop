@@ -1,15 +1,14 @@
 import { Product } from '../../../infra/interfaces/Product'
 import styles from './CardProduct.module.css'
 import { useAppDispatch } from '../../../hooks'
-import { addCartUpdateStock } from '../../../cart/store/cartSlice'
+import { addCartRemoveStock } from '../../../cart/store/cartSlice'
 
 type CardProps = {
   product: Product
 }
 
 export const CardProduct: React.FC<CardProps> = ({ product }) => {
-  const { image_url, stock, productName, price, productDescription, favorite } =
-    product
+  const { image_url, stock, productName, price, productDescription } = product
 
   const dispatch = useAppDispatch()
 
@@ -29,7 +28,7 @@ export const CardProduct: React.FC<CardProps> = ({ product }) => {
       <div className={styles.footer}>
         <div className={styles.stock}>{totalStock}</div>
         {canAddProduct && (
-          <button onClick={() => dispatch(addCartUpdateStock(product))}>
+          <button onClick={() => dispatch(addCartRemoveStock(product))}>
             + Add
           </button>
         )}

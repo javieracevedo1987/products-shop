@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit'
 import { Product } from '../../infra/interfaces/Product'
 import { AppThunk, RootState } from '../../store'
-import { updateStock } from '../../products/store/productsSlice'
+import {
+  removeStock as productRemoveStock,
+  addStock as productAddStock,
+} from '../../products/store/productsSlice'
 
 export interface CartState {
   cart: Product[]
@@ -27,21 +30,63 @@ export const cartSlice = createSlice({
         state.cart.push(item)
       }
     },
+    removeItem: (state, { payload }: PayloadAction<string>) => {
+      const itemIndex = state.cart.findIndex((item) => item.id === payload)
+
+      state.cart.splice(itemIndex, 1)
+    },
+    addAmount: (state, { payload }: PayloadAction<string>) => {
+      const itemIndex = current(state.cart).findIndex(
+        (item) => item.id === payload
+      )
+
+      state.cart[itemIndex].stock += 1
+    },
+    removeAmount: (state, { payload }: PayloadAction<string>) => {
+      const itemIndex = current(state.cart).findIndex(
+        (item) => item.id === payload
+      )
+
+      state.cart[itemIndex].stock -= 1
+    },
   },
 })
 
 // Actions
-export const { addCart } = cartSlice.actions
+export const { addCart, addAmount, removeAmount, removeItem } =
+  cartSlice.actions
 
 // Getters State
 export const selectCart = (state: RootState) => state.cartModule.cart
 
 // Thunk side effect actions
-export const addCartUpdateStock =
+export const addCartRemoveStock =
   (product: Product): AppThunk =>
   (dispatch, getState) => {
     dispatch(addCart(product))
-    dispatch(updateStock(product.id))
+    dispatch(productRemoveStock(product.id))
   }
+
+export const removeAmountAddStock =
+  (id: string): AppThunk =>
+  (dispatch, getState) => {
+    const currentValue = selectCart(getState())
+    const item = currentValue.find((item) => item.id === id)
+    const canRemoveItem = item?.stock === 1
+
+    const removeAction = canRemoveItem ? removeItem : removeAmount
+
+    dispatch(removeAction(id))
+    dispatch(productAddStock(id))
+  }
+
+export const addAmountRemoveStock =
+  (id: string): AppThunk =>
+  (dispatch) => {
+    dispatch(addAmount(id))
+    dispatch(productRemoveStock(id))
+  }
+
+// export const
 
 export default cartSlice.reducer

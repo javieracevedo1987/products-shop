@@ -1,0 +1,39 @@
+.cardItem {
+  margin: 1.25rem;
+  display: flex;
+  align-items: center;
+  /* height: 6.25rem; */
+  height: 9.375rem;
+}
+
+.cardItem img {
+  height: 100%;
+}
+
+.cardItem div {
+  margin-left: 0.5rem;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.actionStock {
+  display: flex;
+}
+
+.stock {
+  margin: 0.5rem;
+}
+
+.price {
+  min-width: 35px;
+}

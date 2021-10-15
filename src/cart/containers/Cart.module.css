@@ -1,7 +1,12 @@
 .cart {
-  border: 1px solid red;
-  width: 400px;
+  border: 1px solid black;
+  width: 34.375rem;
   height: 100vh;
   position: sticky;
   top: 0;
+}
+
+.cart h1 {
+  display: flex;
+  justify-content: center;
 }
