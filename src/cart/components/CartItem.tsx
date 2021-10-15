@@ -1,7 +1,15 @@
-export const CartItem: React.FC = () => {
+import { Product } from '../../infra/interfaces/Product'
+
+type CartItemProps = {
+  item: Product
+}
+
+export const CartItem: React.FC<CartItemProps> = ({ item }) => {
+  const { stock } = item
+
   return (
     <>
-      <h1>Cart Item!!</h1>
+      <div className="stock">{stock}</div>
     </>
   )
 }

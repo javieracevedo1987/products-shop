@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState, AppThunk } from '../../store'
 import { fetchProducts } from '../../infra/services/products'
 import { Product } from '../../infra/interfaces/Product'
@@ -22,7 +22,14 @@ const fetchProductsAsync = createAsyncThunk(
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    updateStock: (state, { payload }: PayloadAction<string>) => {
+      const index = state.products.findIndex(
+        (product) => product.id === payload
+      )
+      state.products[index].stock -= 1
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsAsync.pending, (state) => {
@@ -35,7 +42,7 @@ export const productsSlice = createSlice({
   },
 })
 
-// export const {  } = productsSlice.actions
+export const { updateStock } = productsSlice.actions
 
 // Getters State
 export const selectProducts = (state: RootState) =>
