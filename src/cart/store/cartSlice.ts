@@ -58,6 +58,12 @@ export const { addCart, addAmount, removeAmount, removeItem } =
 
 // Getters State
 export const selectCart = (state: RootState) => state.cartModule.cart
+export const selectTotal = (state: RootState) => {
+  const cart = state.cartModule.cart
+  const total = cart.reduce((acc, val) => (acc += val.price * val.stock), 0)
+
+  return total
+}
 
 // Thunk side effect actions
 export const addCartRemoveStock =

@@ -10,3 +10,21 @@
   display: flex;
   justify-content: center;
 }
+
+.cartItems {
+}
+
+.checkout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.25rem;
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+}
+
+.total {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
