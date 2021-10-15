@@ -12,10 +12,11 @@ export const Cart: React.FC = () => {
   return (
     <div className={styles.cart}>
       <h1>Cart</h1>
-      <div className={styles.cartItems}></div>
-      {cart.map((item) => (
-        <CartItem item={item} key={item.id} />
-      ))}
+      <div className={styles.cartItems}>
+        {cart.map((item) => (
+          <CartItem item={item} key={item.id} />
+        ))}
+      </div>
       <div className={styles.checkout}>
         <button onClick={handleCheckout}>Checkout</button>
         <div className={styles.total}>{totalAmount} $</div>
