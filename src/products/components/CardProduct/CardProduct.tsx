@@ -16,7 +16,7 @@ export const CardProduct: React.FC<CardProps> = ({ product }) => {
   const canAddProduct = stock > 0
 
   return (
-    <article className={styles.cardProduct}>
+    <article className={styles.cardProduct} data-testid="card-product">
       <img src={image_url} alt={productDescription} />
       <div className={styles.content}>
         <div className={styles.info}>
